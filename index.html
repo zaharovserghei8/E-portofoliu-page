@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Serghei Zaharov | Portfolio</title>
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        scroll-behavior: smooth;
+        background-color: #0a0a1a;
+        color: #fff;
+        overflow-x: hidden;
+    }
+    
+    /* Animated Background */
+    .bg-animation {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        background: linear-gradient(45deg, #0a0a1a, #1a1a2e, #16213e, #0f3460);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+    }
+    
+    @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    
+    /* Floating Particles */
+    .particles {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+    
+    .particle {
+        position: absolute;
+        background: rgba(108, 99, 255, 0.3);
+        border-radius: 50%;
+        animation: float 6s infinite ease-in-out;
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(180deg); }
+    }
+    
+    /* Navbar */
+    .navbar {
+        background: rgba(10, 10, 26, 0.9);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(108, 99, 255, 0.3);
+        transition: all 0.3s ease;
+    }
+    
+    .navbar-nav .nav-link {
+        color: #fff !important;
+        font-weight: 600;
+        margin: 0 10px;
+        position: relative;
+        transition: 0.3s;
+    }
+    
+    .navbar-nav .nav-link::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #6C63FF, #00BFFF);
+        transition: width 0.3s ease;
+    }
+    
+    .navbar-nav .nav-link:hover::before {
+        width: 100%;
+    }
+    
+    .navbar-brand {
+        font-weight: 700;
+        color: #6C63FF !important;
+        font-size: 1.5rem;
+    }
+
+    /* Hero Section */
+    .hero {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .hero::before {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(108, 99, 255, 0.3) 0%, transparent 70%);
+        border-radius: 50%;
+        animation: pulse 4s infinite alternate;
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); opacity: 0.5; }
+        100% { transform: scale(1.5); opacity: 0.2; }
+    }
+    
+    .hero img {
+        border: 3px solid transparent;
+        border-radius: 50%;
+        width: 200px;
+        margin-bottom: 25px;
+        z-index: 2;
+        position: relative;
+        background: linear-gradient(45deg, #6C63FF, #00BFFF) border-box;
+        animation: borderGlow 3s infinite alternate;
+    }
+    
+    @keyframes borderGlow {
+        0% { box-shadow: 0 0 20px rgba(108, 99, 255, 0.5); }
+        100% { box-shadow: 0 0 40px rgba(0, 191, 255, 0.7); }
+    }
+    
+    .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        background: linear-gradient(90deg, #6C63FF, #00BFFF);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: textShine 3s infinite alternate;
+    }
+    
+    @keyframes textShine {
+        0% { filter: drop-shadow(0 0 5px rgba(108, 99, 255, 0.5)); }
+        100% { filter: drop-shadow(0 0 10px rgba(0, 191, 255, 0.7)); }
+    }
+    
+    .hero p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 20px 30px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    section {
+        padding: 100px 0;
+    }
+    
+    .section-title {
+        text-align: center;
+        font-weight: 700;
+        margin-bottom: 70px;
+        font-size: 2.5rem;
+        position: relative;
+    }
+    
+    .section-title::after {
+        content: '';
+        position: absolute;
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(90deg, #6C63FF, #00BFFF);
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 2px;
+        animation: lineWidth 3s infinite alternate;
+    }
+    
+    @keyframes lineWidth {
+        0% { width: 50px; }
+        100% { width: 150px; }
+    }
+
+    /* CV Section - ÎNĂLȚIME MARE pentru .png */
+    .cv-container {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        max-height: 800px;
+        overflow-y: auto;
+    }
+    
+    .cv-image {
+        width: 100%;
+        border-radius: 15px;
+        transition: transform 0.3s ease;
+    }
+    
+    .cv-image:hover {
+        transform: scale(1.02);
+    }
+
+    /* Galerie - POZE MAI MARI */
+    .gallery-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 25px;
+    }
+    
+    .gallery-item {
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        height: 400px;
+        cursor: pointer;
+        transition: all 0.4s ease;
+    }
+    
+    .gallery-item:hover {
+        transform: translateY(-10px) scale(1.05);
+        box-shadow: 0 20px 40px rgba(108, 99, 255, 0.3);
+    }
+    
+    .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+    }
+    
+    .gallery-item:hover img {
+        transform: scale(1.1);
+    }
+    
+    .gallery-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        padding: 20px;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+    }
+    
+    .gallery-item:hover .gallery-overlay {
+        transform: translateY(0);
+    }
+
+    /* SP Cards - DOAR LINK GITHUB */
+    .sp-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+    }
+    
+    .sp-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .sp-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(108, 99, 255, 0.1), transparent);
+        transition: left 0.7s ease;
+    }
+    
+    .sp-card:hover::before {
+        left: 100%;
+    }
+    
+    .sp-card:hover {
+        transform: translateY(-10px);
+        border-color: #6C63FF;
+        box-shadow: 0 15px 30px rgba(108, 99, 255, 0.2);
+    }
+    
+    .sp-number {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #6C63FF;
+        margin-bottom: 15px;
+    }
+    
+    .github-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: linear-gradient(45deg, #6C63FF, #00BFFF);
+        color: white;
+        padding: 12px 25px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+        margin-top: 20px;
+    }
+    
+    .github-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+        color: white;
+    }
+
+    /* Contact Section */
+    .contact-container {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .contact-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 25px;
+        padding: 15px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.03);
+    }
+    
+    .contact-item:hover {
+        background: rgba(108, 99, 255, 0.1);
+        transform: translateX(10px);
+    }
+    
+    .contact-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(45deg, #6C63FF, #00BFFF);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 20px;
+        font-size: 1.5rem;
+    }
+    
+    footer {
+        background: rgba(0, 0, 0, 0.5);
+        padding: 40px 0;
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(45deg, #6C63FF, #00BFFF);
+        border-radius: 5px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+        
+        .gallery-container {
+            grid-template-columns: 1fr;
+        }
+        
+        .gallery-item {
+            height: 300px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<!-- Animated Background -->
+<div class="bg-animation"></div>
+
+<!-- Floating Particles -->
+<div class="particles" id="particles"></div>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">S.ZAHAROV</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#hero">Acasă</a></li>
+        <li class="nav-item"><a class="nav-link" href="#cv">CV</a></li>
+        <li class="nav-item"><a class="nav-link" href="#galerie">Galerie</a></li>
+        <li class="nav-item"><a class="nav-link" href="#sp">Sarcini Practice</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contacte</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="hero" class="hero">
+    <img src="img/poza_personala.jpg" alt="Poza personală" class="animate__animated animate__fadeInDown">
+    <h1 class="animate__animated animate__fadeInUp">SERGHIE ZAHAROV</h1>
+    <p class="animate__animated animate__fadeInUp animate__delay-1s">
+        Despre mine
+Sunt Serghei Zaharov, student la Facultatea de Economie, Inginerie și Științe Aplicate, pasionat de programare și web development. Încă din copilărie m-a atras crearea de site-uri și jocuri, iar acum îmi dezvolt abilitățile în mod activ, explorând tehnologii moderne și design digital.
+
+Îmi place să învăț lucruri noi rapid, să lucrez în echipă și să găsesc soluții creative la probleme complexe. Sunt perseverent, atent la detalii și deschis la noi provocări, dorind să transform pasiunea mea într-o carieră profesională de succes în IT și tehnologie.
+    </p>
+</section>
+
+<!-- CV Section -->
+<section id="cv" class="container">
+    <h2 class="section-title animate__animated animate__fadeInUp">CV EUROPASS</h2>
+    <div class="cv-container animate__animated animate__fadeInUp">
+        <!-- Dacă ai .png, folosește asta -->
+        <img src="pdf/cv_europass.png" alt="CV Europass" class="cv-image">
+    </div>
+</section>
+
+<!-- Galerie Foto -->
+<section id="galerie" class="container">
+    <h2 class="section-title animate__animated animate__fadeInUp">GALERIE FOTO</h2>
+    <div class="gallery-container">
+        <div class="gallery-item animate__animated animate__fadeInUp">
+            <img src="img/foto1.jpg" alt="Foto 1">
+            <div class="gallery-overlay">
+                <h5>Foto 1</h5>
+                <p>Eu cu Stasik</p>
+            </div>
+        </div>
+        <div class="gallery-item animate__animated animate__fadeInUp animate__delay-1s">
+            <img src="img/foto2.jpg" alt="Foto 2">
+            <div class="gallery-overlay">
+                <h5>Foto 2</h5>
+                <p>Eu cu Nichita</p>
+            </div>
+        </div>
+        <div class="gallery-item animate__animated animate__fadeInUp animate__delay-2s">
+            <img src="img/foto3.jpg" alt="Foto 3">
+            <div class="gallery-overlay">
+                <h5>Foto 3</h5>
+                <p>Iar eu cu Stasik dar in park</p>
+            </div>
+        </div>
+        <div class="gallery-item animate__animated animate__fadeInUp">
+            <img src="img/foto4.jpg" alt="Foto 4">
+            <div class="gallery-overlay">
+                <h5>Foto 4</h5>
+                <p>Iar noi cu Stasik dar la fantane</p>
+            </div>
+        </div>
+        <div class="gallery-item animate__animated animate__fadeInUp animate__delay-1s">
+            <img src="img/foto5.jpg" alt="Foto 5">
+            <div class="gallery-overlay">
+                <h5>Foto 5</h5>
+                <p>Eu cu rubla(pocti)</p>
+            </div>
+        </div>
+        <div class="gallery-item animate__animated animate__fadeInUp animate__delay-2s">
+            <img src="img/foto6.jpg" alt="Foto 6">
+            <div class="gallery-overlay">
+                <h5>Foto 6</h5>
+                <p>Eu la Kofein(Stasik face poza)</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sarcini Practice -->
+<section id="sp" class="container">
+    <h2 class="section-title animate__animated animate__fadeInUp">SARCINI PRACTICE</h2>
+    <div class="sp-container">
+        <!-- SP1 -->
+        <div class="sp-card animate__animated animate__fadeInUp">
+            <div class="sp-number">Sarcini Practice</div>
+            <h4>Sarcini Practice</h4>
+            <p>Link catre toate Sarcini Practice</p>
+            <a href="https://github.com/zaharovserghei8/E-portofoliu" target="_blank" class="github-btn">
+                <i class="fab fa-github"></i> Vezi pe GitHub
+            </a>
+        </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="container">
+    <h2 class="section-title animate__animated animate__fadeInUp">CONTACTE</h2>
+    <div class="contact-container animate__animated animate__fadeInUp">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h5>Email</h5>
+                        <a href="mailto:gonetridblame@gmail.com" style="color: #6C63FF;">gonetridblame@gmail.com</a>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div>
+                        <h5>Telefon</h5>
+                        <a href="tel:+37376909879" style="color: #6C63FF;">+373 769 09 879</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <div>
+                        <h5>LinkedIn</h5>
+                        <a href="https://www.linkedin.com/in/serghei-zaharov" target="_blank" style="color: #6C63FF;">linkedin.com/in/serghei-zaharov</a>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <div>
+                        <h5>GitHub</h5>
+                        <a href="https://github.com/sergheizaharov" target="_blank" style="color: #6C63FF;">github.com/sergheizaharov</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <h4>Serghei Zaharov</h4>
+        <p>© 2025 E-portofoliu IT2501 | Universitatea de Stat "Bogdan Petriceicu Hasdeu" din Cahul</p>
+    </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Create floating particles
+    function createParticles() {
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 30;
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Random properties
+            const size = Math.random() * 20 + 5;
+            const posX = Math.random() * 100;
+            const posY = Math.random() * 100;
+            const delay = Math.random() * 5;
+            const duration = Math.random() * 3 + 3;
+            
+            // Apply styles
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${posX}%`;
+            particle.style.top = `${posY}%`;
+            particle.style.animationDelay = `${delay}s`;
+            particle.style.animationDuration = `${duration}s`;
+            
+            // Random color
+            const colors = ['rgba(108, 99, 255, 0.3)', 'rgba(0, 191, 255, 0.3)', 'rgba(255, 255, 255, 0.1)'];
+            particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+            
+            particlesContainer.appendChild(particle);
+        }
+    }
+    
+    // Initialize particles
+    createParticles();
+    
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 100) {
+            navbar.style.background = 'rgba(10, 10, 26, 0.95)';
+            navbar.style.backdropFilter = 'blur(15px)';
+        } else {
+            navbar.style.background = 'rgba(10, 10, 26, 0.9)';
+            navbar.style.backdropFilter = 'blur(10px)';
+        }
+    });
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    // Animate elements on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    // Observe all animated elements
+    document.querySelectorAll('.animate__animated').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(el);
+    });
+    
+    // Hover effect for SP cards
+    document.querySelectorAll('.sp-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+</script>
+</body>
+</html>
